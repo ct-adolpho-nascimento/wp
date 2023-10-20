@@ -18,6 +18,10 @@ class New_Notices extends Post_Type_Default
   private string $title_seo;
   private string $description_seo;
 
+  private array $custom_categories = [];
+  private array $custom_categories_obj = [];
+  private array $custom_tags = [];
+  private array $custom_tags_obj = [];
 
   public function __construct(int $post_id)
   {
@@ -40,5 +44,19 @@ class New_Notices extends Post_Type_Default
   public function get_description_seo(): string
   {
     return $this->description_seo;
+  }
+
+  public function get_all_categories_per_taxonomies(int $post_id)
+  {
+    $this->custom_categories = wp_get_post_terms($post_id, 'categoria_clima');
+    $this->custom_categories_obj[] = parent::get_all_taxonomies($this->custom_categories);
+    return $this->custom_categories_obj;
+  }
+
+  public function get_all_tags_per_taxonomies(int $post_id)
+  {
+    $this->custom_tags = wp_get_post_terms($post_id, 'custom_tags');
+    $this->custom_tags_obj[] = parent::get_all_taxonomies($this->custom_tags);
+    return $this->custom_tags_obj;
   }
 }

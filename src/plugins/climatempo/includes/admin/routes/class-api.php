@@ -34,8 +34,10 @@ class Api
         $post_excerpt = $new_notices->get_excerpt();
         $post_thumbnail = $new_notices->get_thumbnail();
         $top_news = $new_notices->get_top_news();
-        $categories = $new_notices->get_all_categories($post_id);
-        $tags = $new_notices->get_all_tags($post_id);
+        $categories_tax = $new_notices->get_all_categories_per_taxonomies($post_id);
+        $tags_custom = $new_notices->get_all_tags_per_taxonomies($post_id);
+        // $categories = $new_notices->get_all_categories($post_id);
+        // $tags = $new_notices->get_all_tags($post_id);
 
         $data[] = array(
           'id'                    => $post_id,
@@ -46,8 +48,10 @@ class Api
           'excerpt'               => $post_excerpt,
           'thumbnail'             => $post_thumbnail,
           'top_news'              => intval($top_news),
-          'categories'            => $categories,
-          'tags'                  => $tags,
+          'categories'            => $categories_tax,
+          'tags'                  => $tags_custom,
+          // 'categories'            => $categories,
+          // 'tags'                  => $tags,
         );
       }
     }

@@ -37,6 +37,7 @@ class Register_New_Notices
       'labels'              => $labels,
       'public'              => true,
       'publicly_queryable'  => true,
+      'menu_icon'           => 'dashicons-cloud',
       'show_ui'             => true,
       'show_in_menu'        => true,
       'query_var'           => true,
@@ -46,7 +47,7 @@ class Register_New_Notices
       'hierarchical'        => false,
       'menu_position'       => null,
       'supports'            => array('title', 'editor', 'thumbnail', 'excerpt'),
-      'taxonomies'          => array('category', 'post_tag'),
+      // 'taxonomies'          => array('category', 'post_tag'),
     );
 
     register_post_type('novas_noticias', $args);

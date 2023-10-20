@@ -81,7 +81,7 @@ abstract class Post_Type_Default
     return $this->tag_obj;
   }
 
-  private function get_all_taxonomies(array $taxonomies)
+  public function get_all_taxonomies(array $taxonomies)
   {
     foreach ($taxonomies as $item) {
       $taxonomy = get_category($item);

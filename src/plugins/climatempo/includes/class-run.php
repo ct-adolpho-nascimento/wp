@@ -25,5 +25,11 @@ class Run
 
     $api = new \Climatempo\Admin\Routes\Api();
     add_action('rest_api_init', array($api, 'register_api'));
+
+    $category_tax = new \Climatempo\Admin\App\Cpt\Taxonomies\Categoria_Climatempo();
+    add_action('init', array($category_tax, 'register_taxonomy_categoria_clima'));
+
+    $custom_tags = new \Climatempo\Admin\App\Cpt\Taxonomies\Tags_Custom();
+    add_action('init', array($custom_tags, 'register_taxonomy_custom_tags'));
   }
 }
