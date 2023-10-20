@@ -14,7 +14,7 @@ namespace Climatempo\Admin\App\Model;
 
 class New_Notices extends Post_Type_Default
 {
-  private int $top_news;
+  private $top_news;
   private string $title_seo;
   private string $description_seo;
 
@@ -31,7 +31,7 @@ class New_Notices extends Post_Type_Default
     $this->description_seo = get_post_meta($post_id, 'ac_description_seo', true);
   }
 
-  public function get_top_news(): int
+  public function get_top_news()
   {
     return $this->top_news;
   }
