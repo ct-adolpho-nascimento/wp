@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/plugins/pods/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/plugins/pods/tribe-common/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/plugins/wp-graphql/src" isTestSource="false" packagePrefix="WPGraphQL" />
+      <sourceFolder url="file://$MODULE_DIR$/src/plugins/wp-security-audit-log/classes" isTestSource="false" packagePrefix="WSAL" />
+      <sourceFolder url="file://$MODULE_DIR$/src/plugins/wp-stateless/lib/Google/src" isTestSource="false" packagePrefix="Google" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
