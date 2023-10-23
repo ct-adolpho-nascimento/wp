@@ -11,6 +11,6 @@ class ContadorVisualizacoesTest extends TestCase
 
     $resultado = $a + $b;
 
-    $this->assertEquals(11, $resultado);
+    $this->assertEquals(12, $resultado);
   }
 }

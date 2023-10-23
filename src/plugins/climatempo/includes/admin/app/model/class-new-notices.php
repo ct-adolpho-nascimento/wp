@@ -27,8 +27,8 @@ class New_Notices extends Post_Type_Default
   {
     parent::__construct();
     $this->top_news = get_post_meta($post_id, 'top_news', true);
-    $this->title_seo = get_post_meta($post_id, 'ac_title_seo', true);
-    $this->description_seo = get_post_meta($post_id, 'ac_description_seo', true);
+    $this->title_seo = get_post_meta($post_id, 'title_seo', true);
+    $this->description_seo = get_post_meta($post_id, 'description_seo', true);
   }
 
   public function get_top_news()
