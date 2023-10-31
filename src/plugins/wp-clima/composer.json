@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Climatempo\\": "Climatempo/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.4"
+  }
+}
