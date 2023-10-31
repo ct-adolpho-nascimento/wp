@@ -6,18 +6,26 @@ use Climatempo\Admin\App\Repositories\Notices_Pos_2015_Ct_Repository;
 
 class Notices_Pos_2015_Ct_Service
 {
-  public static function getAllNotices($topNews, $perPage)
+
+  private $newNoticePos2015CtRepository;
+
+  public function __construct()
   {
-    return Notices_Pos_2015_Ct_Repository::getNotices($topNews, $perPage);
+    $this->newNoticePos2015CtRepository = new Notices_Pos_2015_Ct_Repository();
   }
 
-  public static function getNoticePos2015BySlug($slug)
+  public function getAllNotices($topNews, $perPage)
   {
-    return Notices_Pos_2015_Ct_Repository::getNoticePos2015Slug($slug);
+    return $this->newNoticePos2015CtRepository->getNotices($topNews, $perPage);
   }
 
-  public static function getNoticePos2015PerCategory($category, $per_page)
+  public function getNoticePos2015BySlug($slug)
   {
-    return Notices_Pos_2015_Ct_Repository::getNoticePos2015Category($category, $per_page);
+    return $this->newNoticePos2015CtRepository->getNoticePos2015Slug($slug);
+  }
+
+  public function getNoticePos2015PerCategory($category, $per_page)
+  {
+    return $this->newNoticePos2015CtRepository->getNoticePos2015Category($category, $per_page);
   }
 }

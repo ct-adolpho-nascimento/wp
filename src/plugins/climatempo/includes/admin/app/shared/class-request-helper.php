@@ -4,7 +4,7 @@ namespace Climatempo\Admin\App\Shared;
 
 class Request_Helper
 {
-  public static function processRequestParams($request)
+  public function processRequestParams($request)
   {
     $get_top_news = $request->get_param('top_news');
     $top_news = (isset($get_top_news) || !(empty($get_top_news))) ? $get_top_news : array();
@@ -18,7 +18,7 @@ class Request_Helper
     ];
   }
 
-  public static function processRequestSlugParams($request)
+  public function processRequestSlugParams($request)
   {
     $slug = $request->get_param('slug');
 
@@ -27,7 +27,7 @@ class Request_Helper
     ];
   }
 
-  public static function processRequestCategoryParams($request)
+  public function processRequestCategoryParams($request)
   {
     $category_slug = $request->get_param('category');
 

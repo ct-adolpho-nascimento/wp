@@ -14,17 +14,17 @@ class Api
     // Novas Notícias
     register_rest_route('wp/v2', '/novas-noticias-climatempo', array(
       'methods' => WP_REST_Server::READABLE,
-      'callback' => [New_Notices_Controller::class, 'all_notices_climatempo'],
+      'callback' => [new New_Notices_Controller(), 'all_notices_climatempo'],
     ));
 
     register_rest_route('wp/v2', '/novas-noticias-climatempo/(?P<slug>[a-zA-Z0-9-]+)', array(
       'methods' => WP_REST_Server::READABLE,
-      'callback' => [New_Notices_Controller::class, 'notice_climatempo_by_slug'],
+      'callback' => [new New_Notices_Controller(), 'notice_climatempo_by_slug'],
     ));
 
     register_rest_route('wp/v2', '/novas-noticias-climatempo/categories/(?P<category>[a-zA-Z0-9-]+)', array(
       'methods' => WP_REST_Server::READABLE,
-      'callback' => [New_Notices_Controller::class, 'notice_climatempo_per_category'],
+      'callback' => [new New_Notices_Controller(), 'notice_climatempo_per_category'],
     ));
 
     //Pré
@@ -36,17 +36,17 @@ class Api
     //Pós
     register_rest_route('wp/v2', '/noticias-pos-2015-climatempo', array(
       'methods' => WP_REST_Server::READABLE,
-      'callback' => [Notices_Pos_2015_Ct_Controller::class, 'all_notices_pos_2015_ct_climatempo'],
+      'callback' => [new Notices_Pos_2015_Ct_Controller(), 'all_notices_pos_2015_ct_climatempo'],
     ));
 
     register_rest_route('wp/v2', '/noticias-pos-2015-climatempo/(?P<slug>[a-zA-Z0-9-]+)', array(
       'methods' => WP_REST_Server::READABLE,
-      'callback' => [Notices_Pos_2015_Ct_Controller::class, 'notice_pos_2015_ct_climatempo_by_slug'],
+      'callback' => [new Notices_Pos_2015_Ct_Controller(), 'notice_pos_2015_ct_climatempo_by_slug'],
     ));
 
     register_rest_route('wp/v2', '/noticias-pos-2015-climatempo/categories/(?P<category>[a-zA-Z0-9-]+)', array(
       'methods' => WP_REST_Server::READABLE,
-      'callback' => [Notices_Pos_2015_Ct_Controller::class, 'notice_pos_2015_ct_climatempo_per_category'],
+      'callback' => [new Notices_Pos_2015_Ct_Controller(), 'notice_pos_2015_ct_climatempo_per_category'],
     ));
   }
 }

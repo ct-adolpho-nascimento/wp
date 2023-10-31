@@ -2,14 +2,20 @@
 
 namespace Climatempo\Admin\App\Repositories;
 
-use Climatempo\Admin\App\Model\New_Notices;
 use Climatempo\Admin\App\Shared\Format_Data_Return;
 use WP_Error;
 use WP_Query;
 
 class New_Notices_Repository
 {
-  public static function getNotices($topNews, $perPage)
+  private $formatDataReturn;
+
+  public function __construct()
+  {
+    $this->formatDataReturn = new Format_Data_Return();
+  }
+
+  public function getNotices($topNews, $perPage)
   {
     $getData = array();
     if (in_array($topNews, ["on", "off"])) {
@@ -38,14 +44,14 @@ class New_Notices_Repository
         $query->the_post();
         $post_id = get_the_ID();
 
-        $data[] = Format_Data_Return::formatData($post_id);
+        $data[] = $this->formatDataReturn->formatData($post_id);
       }
     }
 
     return rest_ensure_response($data);
   }
 
-  public static function getNoticeSlug($slug)
+  public function getNoticeSlug($slug)
   {
     $args = array(
       'name' => $slug,
@@ -62,12 +68,12 @@ class New_Notices_Repository
     }
 
     $post_id = $post->ID;
-    $data = Format_Data_Return::formatData($post_id);
+    $data = $this->formatDataReturn->formatData($post_id);
 
     return rest_ensure_response($data);
   }
 
-  public static function getNoticeCategory($category, $per_page)
+  public function getNoticeCategory($category, $per_page)
   {
     $terms = array(
       array(
@@ -91,13 +97,13 @@ class New_Notices_Repository
         $query->the_post();
         $post_id = get_the_ID();
 
-        $data[] = Format_Data_Return::formatData($post_id);
+        $data[] = $this->formatDataReturn->formatData($post_id);
       }
     }
     return rest_ensure_response($data);
   }
 
-  // public static function formattedData($post_id)
+  // public function formattedData($post_id)
   // {
   //   $new_notices = new New_Notices($post_id);
 

@@ -6,7 +6,7 @@ use Climatempo\Admin\App\Model\New_Notices;
 
 class Format_Data_Return
 {
-  public static function formatData($post_id)
+  public function formatData($post_id)
   {
     $new_notices = new New_Notices($post_id);
 

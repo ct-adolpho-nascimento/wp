@@ -2,14 +2,21 @@
 
 namespace Climatempo\Admin\App\Repositories;
 
-use Climatempo\Admin\App\Model\Notices_Pos_2015_Ct;
 use Climatempo\Admin\App\Shared\Format_Data_Return;
 use WP_Error;
 use WP_Query;
 
 class Notices_Pos_2015_Ct_Repository
 {
-  public static function getNotices($topNews, $perPage)
+
+  private $formatDataReturn;
+
+  public function __construct()
+  {
+    $this->formatDataReturn = new Format_Data_Return();
+  }
+
+  public function getNotices($topNews, $perPage)
   {
     $getData = array();
     if (in_array($topNews, ["on", "off"])) {
@@ -50,7 +57,7 @@ class Notices_Pos_2015_Ct_Repository
     return $data;
   }
 
-  public static function getNoticePos2015Slug($slug)
+  public function getNoticePos2015Slug($slug)
   {
     $args = array(
       'name' => $slug,
@@ -74,7 +81,7 @@ class Notices_Pos_2015_Ct_Repository
     return rest_ensure_response($data);
   }
 
-  public static function getNoticePos2015Category($category, $per_page)
+  public function getNoticePos2015Category($category, $per_page)
   {
     $category = get_term_by('slug', $category, 'category');
 
@@ -105,7 +112,7 @@ class Notices_Pos_2015_Ct_Repository
     return $data;
   }
 
-  public static function getCategoryAndTags($post_id)
+  public function getCategoryAndTags($post_id)
   {
     $categories = wp_get_post_categories($post_id);
     $post_tags = wp_get_post_tags($post_id);
@@ -126,7 +133,7 @@ class Notices_Pos_2015_Ct_Repository
       );
     }
 
-    $getData = Format_Data_Return::formatData($post_id);
+    $getData = $this->formatDataReturn->formatData($post_id);
     $getData['categories'] = $category_names;
     $getData['tags'] = $tags;
 

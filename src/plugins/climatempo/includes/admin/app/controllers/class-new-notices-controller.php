@@ -8,36 +8,45 @@ use WP_REST_Request;
 
 class New_Notices_Controller
 {
-  public static function all_notices_climatempo(WP_REST_Request $request)
+  private $newNoticeService;
+  private $requestHelper;
+
+  public function __construct()
   {
-    $requestParams = Request_Helper::processRequestParams($request);
+    $this->newNoticeService = new New_Notices_Service();
+    $this->requestHelper = new Request_Helper();
+  }
+
+  public function all_notices_climatempo(WP_REST_Request $request)
+  {
+    $requestParams = $this->requestHelper->processRequestParams($request);
     $top_news = $requestParams['top_news'];
     $per_page = $requestParams['per_page'];
 
-    $data = New_Notices_Service::getAllNotices($top_news, $per_page);
+    $data = $this->newNoticeService->getAllNotices($top_news, $per_page);
 
     return rest_ensure_response($data);
   }
 
-  public static function notice_climatempo_by_slug(WP_REST_Request $request)
+  public function notice_climatempo_by_slug(WP_REST_Request $request)
   {
-    $requestParams = Request_Helper::processRequestSlugParams($request);
+    $requestParams = $this->requestHelper->processRequestSlugParams($request);
 
     $slug = $requestParams['slug'];
 
-    $data = New_Notices_Service::getNoticeBySlug($slug);
+    $data = $this->newNoticeService->getNoticeBySlug($slug);
 
     return rest_ensure_response($data);
   }
 
-  public static function notice_climatempo_per_category(WP_REST_Request $request)
+  public function notice_climatempo_per_category(WP_REST_Request $request)
   {
-    $requestParams = Request_Helper::processRequestCategoryParams($request);
+    $requestParams = $this->requestHelper->processRequestCategoryParams($request);
 
     $category = $requestParams['category'];
     $per_page = $requestParams['per_page'];
 
-    $data = New_Notices_Service::getNoticePerCategory($category, $per_page);
+    $data = $this->newNoticeService->getNoticePerCategory($category, $per_page);
 
     return rest_ensure_response($data);
   }

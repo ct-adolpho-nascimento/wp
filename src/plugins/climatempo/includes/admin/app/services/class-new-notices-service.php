@@ -6,18 +6,25 @@ use Climatempo\Admin\App\Repositories\New_Notices_Repository;
 
 class New_Notices_Service
 {
-  public static function getAllNotices($topNews, $perPage)
+  private $newNoticeRepository;
+
+  public function __construct()
   {
-    return New_Notices_Repository::getNotices($topNews, $perPage);
+    $this->newNoticeRepository = new New_Notices_Repository();
   }
 
-  public static function getNoticeBySlug($slug)
+  public function getAllNotices($topNews, $perPage)
   {
-    return New_Notices_Repository::getNoticeSlug($slug);
+    return $this->newNoticeRepository->getNotices($topNews, $perPage);
   }
 
-  public static function getNoticePerCategory($category, $per_page)
+  public function getNoticeBySlug($slug)
   {
-    return New_Notices_Repository::getNoticeCategory($category, $per_page);
+    return $this->newNoticeRepository->getNoticeSlug($slug);
+  }
+
+  public function getNoticePerCategory($category, $per_page)
+  {
+    return $this->newNoticeRepository->getNoticeCategory($category, $per_page);
   }
 }
