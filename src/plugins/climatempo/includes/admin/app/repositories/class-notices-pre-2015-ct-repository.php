@@ -27,12 +27,21 @@ class Notices_Pre_2015_Ct_Repository
 
         $post_title = $notices->get_title();
         $post_date = $notices->get_date();
+        $post_author = $notices->get_author($post_id);
         $post_slug = $notices->get_slug();
         $post_content = $notices->get_content();
         $post_excerpt = $notices->get_excerpt();
         $post_thumbnail = $notices->get_thumbnail();
         $categories = wp_get_post_categories($post_id);
         $post_tags = wp_get_post_tags($post_id);
+        $thumbnail_id = get_post_meta($post_id, '_thumbnail_id', true);
+        $path_thumbanail_in_media_post = wp_get_attachment_url($thumbnail_id);
+
+        if (!$post_thumbnail) {
+          $thumb = $path_thumbanail_in_media_post;
+        } else {
+          $thumb = $post_thumbnail;
+        }
 
         $category_names = array();
         $tags = array();
@@ -53,13 +62,15 @@ class Notices_Pre_2015_Ct_Repository
         $data[] = array(
           'id' => $post_id,
           'date' => $post_date,
+          'author_name' => $post_author,
           'title' => $post_title,
           'slug' => $post_slug,
           'content' => $post_content,
           'excerpt' => $post_excerpt,
-          'thumbnail' => $post_thumbnail,
+          'featuredmedia' => $thumb,
           'categories' => $category_names,
           'tags' => $tags,
+          'top_news' => false,
         );
       }
     }

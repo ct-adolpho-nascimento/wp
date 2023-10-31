@@ -10,4 +10,14 @@ class New_Notices_Service
   {
     return New_Notices_Repository::getNotices($topNews, $perPage);
   }
+
+  public static function getNoticeBySlug($slug)
+  {
+    return New_Notices_Repository::getNoticeSlug($slug);
+  }
+
+  public static function getNoticePerCategory($category, $per_page)
+  {
+    return New_Notices_Repository::getNoticeCategory($category, $per_page);
+  }
 }

@@ -14,57 +14,45 @@ namespace Climatempo\Admin\App\Model;
 
 abstract class Post_Type_Default
 {
-  private string $title;
-  private string $date;
-  private string $slug;
-  private string $content;
-  private string $excerpt;
-  private string $thumbnail;
   private array $categories = [];
   private array $category_obj = [];
   private array $tags = [];
   private array $tag_obj = [];
 
-
-  public function __construct()
+  public function get_title(int $post_id): string
   {
-    $this->title = get_the_title();
-    $this->date = get_post_field('post_date', get_post());
-    $this->slug = get_post_field('post_name', get_post());
-    $this->content = get_the_content();
-    $this->excerpt = get_the_excerpt();
-    $this->thumbnail = get_the_post_thumbnail_url();
+    return get_the_title($post_id);
   }
 
-  public function get_title(): string
+  public function get_date(int $post_id): string
   {
-    return $this->title;
+    return get_post_field('post_date', get_post($post_id));
   }
 
-  public function get_date(): string
+  public function get_author(int $post_id): string
   {
-    return $this->date;
+    $author_id = get_post_field('post_author', $post_id);
+    return get_the_author_meta('display_name', $author_id);
   }
 
-  public function get_slug(): string
+  public function get_slug(int $post_id): string
   {
-    return $this->slug;
+    return get_post_field('post_name', get_post($post_id));
   }
 
-
-  public function get_content(): string
+  public function get_content(int $post_id): string
   {
-    return $this->content;
+    return get_the_content(null, false, $post_id);
   }
 
-  public function get_excerpt(): string
+  public function get_excerpt(int $post_id): string
   {
-    return $this->excerpt;
+    return get_the_excerpt($post_id);
   }
 
-  public function get_thumbnail(): string
+  public function get_thumbnail(int $post_id): string
   {
-    return $this->thumbnail;
+    return get_the_post_thumbnail_url($post_id);
   }
 
   public function get_all_categories(int $post_id)
